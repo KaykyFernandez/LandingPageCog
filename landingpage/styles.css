@@ -452,3 +452,63 @@ footer a:hover {
   }
 }
 
+/* Automação de Portões */
+#automacao {
+  background: #1b1b1b;
+  padding: 5rem 1rem 4rem;
+  text-align: center;
+}
+
+#automacao h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffa726; /* laranja mais suave */
+  margin-bottom: 1.5rem;
+}
+
+#automacao .intro-text {
+  max-width: 800px;
+  margin: 0 auto 2.5rem;
+  font-size: 1.15rem;
+  color: #ccc;
+  line-height: 1.8;
+}
+
+#automacao .features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+}
+
+#automacao .feature-item {
+  background: #222222;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(255, 111, 0, 0.25);
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+  color: #ddd;
+}
+
+#automacao .feature-item:hover {
+  box-shadow: 0 12px 28px rgba(255, 111, 0, 0.55);
+}
+
+#automacao .feature-icon {
+  font-size: 3rem;
+  color: #ff6f00;
+  margin-bottom: 1rem;
+}
+
+#automacao .feature-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #ffb74d;
+}
+
+#automacao .feature-desc {
+  color: #ccc;
+  font-size: 1rem;
+}
+
