@@ -7,6 +7,7 @@
   <title>COG Internet e Segurança - Provedor de Internet</title>
   <link rel="shortcut icon" type="imagex/png" href="./img/LOGO-SEM-FUNDO.ico">
   <link rel="stylesheet" href="./landingpage/styles.css" />
+
 </head>
 
 <body>
@@ -280,7 +281,7 @@
     <div class="container">
       <h2>Área de Cobertura</h2>
       <div class="map-container">
-       <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1uuq3tCa3g_Ne92a_muVwAoqgKB2zQIw&ehbc=2E312F&noprof=1" width="440" height="480" style="border-color: rgb(255, 123, 0);"></iframe>
+       <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1uuq3tCa3g_Ne92a_muVwAoqgKB2zQIw&ehbc=2E312F&noprof=1" width="400" height="400" style="border-color: rgb(255, 123, 0);"></iframe>
       </div>
     </div>
   </section>
@@ -308,20 +309,70 @@
       <a href="#" aria-label="Instagram">Instagram</a>
     </p>
   </footer>
-
   <script>
-    function handleForm(event) {
-      event.preventDefault();
-      const name = event.target.name.value.trim();
-      const email = event.target.email.value.trim();
-      if (!name || !email) {
-        alert('Por favor, preencha os campos de nome e e-mail.');
-        return;
+  // Scroll reveal para as sections
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
       }
-      alert('Obrigado, ' + name + '! Recebemos sua mensagem e entraremos em contato em breve.');
-      event.target.reset();
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll("section").forEach(section => {
+    section.classList.add('hidden');
+    observer.observe(section);
+  });
+
+  // Cria tela de carregamento
+  function showLoadingScreen(callback) {
+    const scrollY = window.scrollY;
+
+    const loader = document.createElement('div');
+    loader.className = 'loading-screen';
+    loader.innerHTML = `
+      <div class="loader-content">
+        <div class="spinner"></div>
+        <p>Carregando...</p>
+      </div>`;
+    document.body.appendChild(loader);
+
+    setTimeout(() => {
+      loader.remove();
+      window.scrollTo({ top: scrollY, behavior: "auto" }); // volta para onde estava
+      if (typeof callback === "function") callback();
+    }, 2000);
+  }
+
+  // Botões de plano ou orçamento: carregar e retornar posição
+  document.addEventListener("click", (e) => {
+    const btnOrcamento = e.target.closest(".btn-primary");
+    const btnPlano = e.target.closest(".btn-plan");
+
+    if (btnOrcamento || btnPlano) {
+      e.preventDefault();
+      const href = e.target.getAttribute("href") || e.target.parentElement.getAttribute("href");
+
+      showLoadingScreen(() => {
+        if (href && href.startsWith("http")) {
+          window.open(href, "_blank");
+        }
+      });
     }
-  </script>
+  });
+
+  // Links do header: scroll suave
+  document.querySelectorAll("header nav a[href^='#']").forEach(link => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+</script>
+
 </body>
 
 </html>
