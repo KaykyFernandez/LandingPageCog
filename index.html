@@ -33,11 +33,15 @@
   </header>
 
   <section class="hero" aria-label="Seção principal">
-    <div class="hero-content container">
-      <h2>Internet rápida, estável e que conecta você ao mundo.</h2>
-      <p>Planos sob medida para sua casa e empresa com atendimento local e suporte 24hrs.</p>
-      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Peça
-        seu plano</button>
+    <div class="carousel">
+    <img src="./img/imagemplanoCog.jpg" alt="Foto do 1" class="active">
+    <img src="./img/imagemPlanoCog2.jpg" alt="Foto do 2">
+    <img src="./img/SaveClip.App_485180463_17900668626153339_9065863602304004254_n.jpg" alt="Foto do 3">
+    <img src="./img/SaveClip.App_456245092_1030565278708670_5782763830439418792_n.jpg" alt="Foto do 4">
+    <img src="./img/SaveClip.App_460350174_8210351215680827_1286878729032815487_n.jpg" alt="Foto do 5">
+    <div class="carousel-buttons">
+      <button onclick="changeSlide(-1)">❮</button>
+      <button onclick="changeSlide(1)">❯</button>
     </div>
   </section>
 
@@ -371,6 +375,22 @@
       }
     });
   });
+ let currentSlide = 0;
+
+  function changeSlide(direction) {
+    const images = document.querySelectorAll('.carousel img');
+    images[currentSlide].classList.remove('active');
+
+    currentSlide = (currentSlide + direction + images.length) % images.length;
+
+    images[currentSlide].classList.add('active');
+  }
+   // Troca automática a cada 5 segundos
+  setInterval(() => {
+    changeSlide(1);
+  }, 5000);
+</script>
+   
 </script>
 
 </body>
