@@ -112,21 +112,7 @@ nav a:focus {
 }
 
 /* Hero */
-.hero {
-  background: url("https://media.gazetadopovo.com.br/2017/07/escritorio-ropdbqozud72yt6dt6jzg6n-1200x800-2.0.3136476287-gpMedium.jpg")
-    no-repeat center center/cover;
-  color: #ffffff;
-  padding: 6rem 1rem 4rem;
-  text-align: center;
-  position: relative;
-}
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  z-index: 0;
-}
+
 .hero-content {
   position: relative;
   max-width: 700px;
@@ -557,3 +543,92 @@ footer a:hover {
   }
 }
 
+.hero {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  margin: none;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 1024px;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.carousel img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Altera de cover para contain */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+  /* Opcional: cor de fundo para áreas vazias */
+  background-color: #000; /* Você pode escolher outra cor se preferir */
+}
+
+
+.carousel img.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.carousel-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.carousel-buttons button {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.carousel-buttons button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+  .carousel {
+    height: 450px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel {
+    height: 250px;
+  }
+
+  .carousel-buttons button {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel {
+    height: 200px;
+  }
+
+  .carousel-buttons button {
+    font-size: 1.2rem;
+  }
+}
